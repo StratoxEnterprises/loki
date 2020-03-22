@@ -11,6 +11,10 @@ config:
   loglevel: warn
   lineFormat: json
   k8sLoggingParser: "Off"
+  batchSize: 10240
+  skipLongLines: "Off"
+  refreshInterval: 60
+  ignoreOlder: 365d
   removeKeys:
     - kubernetes
     - stream

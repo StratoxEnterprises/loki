@@ -16,12 +16,15 @@ data:
         Log_Level      {{ .Values.config.loglevel }}
         Parsers_File   parsers.conf
     [INPUT]
-        Name           tail
-        Tag            kube.*
-        Path           /var/log/containers/*.log
-        Parser         docker
-        DB             /run/fluent-bit/flb_kube.db
-        Mem_Buf_Limit  5MB
+        Name             tail
+        Tag              kube.*
+        Path             /var/log/containers/*.log
+        Parser           docker
+        DB               /run/fluent-bit/flb_kube.db
+        Mem_Buf_Limit    5MB
+        Skip_Long_Lines  {{ .Values.config.skipLongLines }}
+        Refresh_Interval {{ .Values.config.refreshInterval }}
+        Ignore_Older     {{ .Values.config.ignoreOlder }}
     [FILTER]
         Name           kubernetes
         Match          kube.*
@@ -47,7 +50,8 @@ data:
         LabelMapPath /fluent-bit/etc/labelmap.json
         LineFormat {{ .Values.config.lineFormat }}
         LogLevel {{ .Values.config.loglevel }}
-
+        BatchSize {{ .Values.config.batchSize }}
+  
   parsers.conf: |-
     [PARSER]
         Name        docker
