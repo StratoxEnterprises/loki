@@ -28,6 +28,12 @@ data:
         Kube_URL       https://kubernetes.default.svc:443
         Merge_Log On
         K8S-Logging.Parser {{ .Values.config.k8sLoggingParser }}
+    {{- range $filter:= .Values.config.filters }}
+    [FILTER]
+    {{- range $key,$value := $filter }}
+        {{ $key }} {{ $value }}
+    {{- end }}
+    {{- end }}
     [Output]
         Name loki
         Match *

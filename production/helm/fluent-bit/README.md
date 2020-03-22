@@ -83,6 +83,7 @@ For more details, read the [Fluent Bit documentation](../../../cmd/fluent-bit/RE
 | `config.removeKeys`      | The list of key to remove from each record                                                         | `[removeKeys,stream]`            |
 | `config.labels`          | A set of labels to send for every log                                                              | `'{job="fluent-bit"}'`           |
 | `config.labelMap`        | Mapping of labels from a record. See [Fluent Bit documentation](../../../cmd/fluent-bit/README.md) |                                  |
+| `config.filters`         | Definition of extras fluent bit filters. See [Official Fluent Bit documentation](https://docs.fluentbit.io/manual/filter). The format is a sequence of mappings where each key is the same as the one in the [FILTER] section of fluent-bit.conf file       | `[]`          
 | `config.parsers`         | Definition of extras fluent bit parsers. See [Official Fluent Bit documentation](https://docs.fluentbit.io/manual/filter/parser). The format is a sequence of mappings where each key is the same as the one in the [PARSER] section of parsers.conf file       | `[]`                            |
 | `affinity`               | [affinity][affinity] settings for pod assignment                                                   | `{}`                             |
 | `annotations`            | Annotations to add to Kubernetes resources.                                                        | `{}`                             |
